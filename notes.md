@@ -263,3 +263,8 @@ end
   * is_binary(<<"hello">>)
   *can also include `not` keyword to check the inverse of statement*
 * `def zero?(_x)` - The underscore tells compiler to NOT store the value
+
+## Mix
+
+* Build tool for elixir
+* `$ mix new appname`
