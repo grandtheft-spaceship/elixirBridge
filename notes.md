@@ -268,3 +268,65 @@ end
 
 * Build tool for elixir
 * `$ mix new appname`
+* `mix.exs` - contains the project info/build instructions for the application
+* `def project` - defines the project configuration
+* `def application` - defines the application configuration
+* `defp deps` - defines the dependencies required for the application
+  * *application* and *deps* are the two we will most interact with
+
+**Dependencies**
+* **cowboy** an HTTP server for elang/elixir
+* **plug** - a specification tool and connection adapter for web servers
+* `$ mix hex.info dependencyName` - check versions for dependency
+* `$ mix deps.get` - gets dependencies
+* Add dependencies to *extra applications*
+  * **Extra applications** refer to the new processes that need to run for each dependency
+* `$ mix test` - compiles and tests if dependencies are working
+* `$ iex -S mix` - runs application in *iex*
+
+## Documentation
+
+* `$ mix docs`
+* Can write docs in *markdown*
+* `$ open doc/index.html` => file:/m//Users/justin.dizon/Desktop/elixirBridge/myapp/doc/api-reference.html
+
+## Supervisor Tree
+
+* A **process** is a small program that receives/sends messages from other programs
+* Similar to *threads* in other languages
+* As erlang needs to be reliable system for applications, so built-in to the OTP (Open Telecom Platform) library is the idea of supervision for processes
+  * Watches other processes and if they *die*, the supervisor process will start that back up again
+
+* `iex> recompile` - hot reload server to update changes
+* `iex> :observer.start` - shows processes
+
+## Deployment
+
+* [Dockerfile](http://bit.ly/elixir-dockerfile) - copy everything into YOUR *Dockerfile*
+* `$ touch Dockerfile` in the `root` directory of application
+```
+$ docker-machine create default
+$ docker-machine start default
+$ eval $(docker-machine env default)
+$ docker ps
+```
+* `$ mix release.init` - compiles for production / creates a *release configuration*
+* `$ docker build -t auser/ex .`
+* `$ docker run -p 4000:4000 --rm -it auser/ex /bin/bash`
+* `root@7d9628e4a94a:/build/_build/prod/rel/myapp# ./bin/myapp foreground` - add `./bin/myapp foreground`
+* In another console window, `$ docker-machine ip default`
+
+## Templating
+
+* EEx - Built in Erlang templating system
+
+## GenServer
+
+* A behavior where you define five functions defining how that behavior runs
+  * Define a specific protocol for a behavior
+  * Defines a behavior for a common pattern
+* Good for making an external call to an API
+* *GenServer* is included in erlang
+
+*pokeapi.co*
+*newsapi.org*

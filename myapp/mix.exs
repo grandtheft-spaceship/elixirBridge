@@ -15,7 +15,9 @@ defmodule Myapp.Mixfile do
   # Type "mix help compile.app" for more information
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
-    [extra_applications: [:logger]]
+    [extra_applications: [:logger, :cowboy, :plug],
+    mod: {Myapp, []}
+    ]
   end
 
   # Dependencies can be Hex packages:
@@ -28,6 +30,15 @@ defmodule Myapp.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+      {:cowboy, "~> 1.1"},
+      {:plug, "~> 1.3.5"},
+      {:distillery, "~> 1.4"},
+      {:httpoison, "~> 0.12.0"},
+      {:poison, "~> 3.1"},
+
+      {:earmark, "~> 1.2", only: :dev},
+      {:ex_doc, "~> 0.15.1", only: :dev},
+    ]
   end
 end
