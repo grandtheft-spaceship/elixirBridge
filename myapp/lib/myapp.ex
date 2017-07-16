@@ -13,7 +13,8 @@ defmodule Myapp do
     import Supervisor.Spec, warn: false
 
     children = [
-      worker(Myapp.Router, []) # Looks for .start_link function
+      worker(Myapp.Router, []), # Looks for .start_link function
+      worker(Myapp.ApiServer, []) # Now, you don't need to start the GenServer every time
     ]
 
     options = [

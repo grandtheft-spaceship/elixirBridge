@@ -14,6 +14,8 @@ defmodule Myapp.ApiServer do
     GenServer.call(__MODULE__, {:get_poke, id_or_name})
   end
 
+  def start_link, do: start_link([], [])
+  
   def start_link(_, _) do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
